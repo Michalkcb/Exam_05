@@ -1,4 +1,5 @@
-/*Assignment name  : cpp_module01
+/*
+Assignment name  : cpp_module01
 Expected files   : Warlock.cpp Warlock.hpp
                    ASpell.hpp ASpell.cpp
 				   ATarget.hpp ATarget.cpp
@@ -93,6 +94,12 @@ Richard: I am Richard, the Titled!$
 Target Practice Dummy has been fwooshed!$
 Richard: My job here is done!$
 */
+
+#include "Warlock.hpp"
+#include "Fwoosh.hpp"
+#include "Dummy.hpp"
+#include <iostream>
+
 
 int main()
 {
