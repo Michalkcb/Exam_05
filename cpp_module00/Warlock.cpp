@@ -12,6 +12,7 @@ Warlock::~Warlock() {
     std::cout << this->name << ": My job here is done!" << std::endl;
 }
 
+
 const std::string& Warlock::getName() const { return name; }
 const std::string& Warlock::getTitle() const { return title; }
 
