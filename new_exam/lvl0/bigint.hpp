@@ -3,39 +3,34 @@
 
 #include <string>
 #include <iostream>
-#include <vector>
 
 class Bigint {
 private:
-    std::string value; // Przechowuje liczbę jako string
+    std::string _string;
+
 public:
-    Bigint(); // Konstruktor domyślny
-    Bigint(unsigned long long num); // Konstruktor z wartością liczbową
-    Bigint(const Bigint& other); // Konstruktor kopiujący
-    Bigint(const std::string& str); // Konstruktor z ciągiem znaków
-    Bigint(int num); // Konstruktor z wartością typu int
-    Bigint(const char* str); // Konstruktor z ciągiem znaków typu const char*
+    Bigint(); // Domyślny konstruktor
+    Bigint(unsigned int n); // Konstruktor z unsigned int
+    Bigint(const Bigint& original); // Konstruktor kopiujący
+    ~Bigint(); // Destruktor
 
-    // Operator przypisania
-    Bigint& operator=(const Bigint& other);
-
-    // Operatory arytmetyczne
-    Bigint operator+(const Bigint& other) const;
-    Bigint& operator+=(const Bigint& other);
-
-    // Operatory przesunięcia cyfr
-    Bigint operator<<(int shift) const;
-    Bigint& operator<<=(int shift);
-    Bigint operator>>(int shift) const;
-    Bigint& operator>>=(int shift);
+    std::string getValue() const; // Metoda zwracająca wartość jako string
 
     // Operatory porównania
+    Bigint operator+(const Bigint& other) const; // Operator dodawania
+    Bigint& operator+=(const Bigint& other); // Operator dodawania z przypisaniem
+    Bigint operator++(int); // Operator inkrementacji (postfix)
+    Bigint& operator++(); // Operator inkrementacji (prefix)
+    Bigint operator<<(unsigned int value) const; // Operator przesunięcia w lewo
+    Bigint& operator<<=(unsigned int value); // Operator przesunięcia w lewo z przypisaniem
+    Bigint& operator>>=(unsigned int value); // Operator przesunięcia w prawo z przypisaniem
+
     bool operator<(const Bigint& other) const;
     bool operator>(const Bigint& other) const;
-    bool operator<=(const Bigint& other) const;
-    bool operator>=(const Bigint& other) const;
     bool operator==(const Bigint& other) const;
     bool operator!=(const Bigint& other) const;
+    bool operator<=(const Bigint& other) const;
+    bool operator>=(const Bigint& other) const;
 
     // Operator wypisywania
     friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
