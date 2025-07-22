@@ -18,3 +18,9 @@ bool Bigint::operator==(const Bigint& other) const {
         return true;
     return false;
 }
+
+bool Bigint::operator!=(const Bigint& other) const {
+    if (this->_string != other._string)
+        return true;
+    return false;
+}
