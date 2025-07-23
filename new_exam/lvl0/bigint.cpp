@@ -31,3 +31,15 @@ std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
         os << value.substr(first_non_zero);
     return os;
 }
+
+bool Bigint::operator<(const Bigint& other) const {
+    if (this->_string.length() != other._string.length())
+        return this->_string.length() < other._string.length();
+    return this->_string < other._string;
+}
+
+bool Bigint::operator>(const Bigint& other) const {
+    if (this->_string.length() != other._string.length())
+        return this->_string.length() > other._string.length();
+    return this->_string > other._string;
+}
