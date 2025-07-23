@@ -43,3 +43,11 @@ bool Bigint::operator>(const Bigint& other) const {
         return this->_string.length() > other._string.length();
     return this->_string > other._string;
 }
+
+bool Bigint::operator<=(const Bigint& other) const {
+    return !(*this > other);
+}
+
+bool Bigint::operator>=(const Bigint& other) const {
+    return !(*this < other);
+}

@@ -16,7 +16,7 @@ You will find a main in this directory that must work with your class.
 
 int main() {
 	const Bigint a(42);
-	Bigint b(21), c, /*d(1337)*/ d(042), e(d);
+	Bigint b(21), c, d(1337), e(d);
 
 	std::cout << "a = " << a << std::endl;
 	std::cout << "b = " << b << std::endl;
@@ -36,6 +36,6 @@ int main() {
 	std::cout << "(d > a) = " << (d > a) << std::endl;
 	std::cout << "(d == a) = " << (d == a) << std::endl;
 	std::cout << "(d != a) = " << (d != a) << std::endl;
-	// std::cout << "(d <= a) = " << (d <= a) << std::endl;
-	// std::cout << "(d >= a) = " << (d >= a) << std::endl;
+	std::cout << "(d <= a) = " << (d <= a) << std::endl;
+	std::cout << "(d >= a) = " << (d >= a) << std::endl;
 	}
