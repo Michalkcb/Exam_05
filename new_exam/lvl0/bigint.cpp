@@ -62,3 +62,8 @@ Bigint Bigint::operator<<(unsigned int value) const {
     result._string.append(value, '0');
     return result;
 }
+
+Bigint& Bigint::operator<<=(unsigned int value) {
+    this->_string.append(value, '0');
+    return *this;
+}
