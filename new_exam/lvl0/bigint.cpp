@@ -67,3 +67,12 @@ Bigint& Bigint::operator<<=(unsigned int value) {
     this->_string.append(value, '0');
     return *this;
 }
+
+Bigint& Bigint::operator>>=(unsigned int value) {
+    if (value >= this->_string.length()) {
+        this->_string = "0";
+    } else {
+        this->_string.erase(this->_string.length() - value);
+    }
+    return *this;
+}
