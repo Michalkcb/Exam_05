@@ -8,6 +8,7 @@ Bigint::Bigint(unsigned int n) {
     oss << n;
     _string = oss.str();
 }
+
 Bigint::Bigint(const Bigint& original) : _string(original._string) {}
 Bigint::~Bigint() {}
 
