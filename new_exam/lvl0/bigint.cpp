@@ -15,15 +15,11 @@ Bigint::~Bigint() {}
 std::string Bigint::getValue() const {return _string;}
 
 bool Bigint::operator==(const Bigint& other) const {
-    if (this->_string == other._string)
-        return true;
-    return false;
+    return this->_string == other._string;
 }
 
 bool Bigint::operator!=(const Bigint& other) const {
-    if (this->_string != other._string)
-        return true;
-    return false;
+    return this->_string != other._string;
 }
 
 std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
