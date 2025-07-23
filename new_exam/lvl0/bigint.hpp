@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <sstream>
+#include <math.h>
 
 class Bigint {
 private:

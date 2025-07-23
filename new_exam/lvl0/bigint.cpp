@@ -51,3 +51,8 @@ bool Bigint::operator<=(const Bigint& other) const {
 bool Bigint::operator>=(const Bigint& other) const {
     return !(*this < other);
 }
+
+Bigint& Bigint::operator++() {
+    *this = *this + Bigint(1);
+    return *this;
+}
