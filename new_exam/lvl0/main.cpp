@@ -41,5 +41,4 @@ int main() {
 	std::cout << "() = " << (d >= a) << std::endl;
 
 	std::cout << "(b << 10)= " << (b << 5) << std::endl;
-
 	}
