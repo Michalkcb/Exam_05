@@ -74,3 +74,24 @@ Bigint& Bigint::operator>>=(unsigned int value) {
     }
     return *this;
 }
+
+Bigint Bigint::operator+(const Bigint& other) const {
+    std::string a = this->_string;
+    std::string b = other._string;
+
+    if ( a.length() < b.length() ) {
+        std::swap(a, b);
+    }
+    b.insert(0, a.length() - b.length(), '0'); // Pad with leading zeros
+    std::string result ="";
+    int carry = 0;
+    for (int i = a.length() - 1; i >= 0; --i) {
+        int sum = (a[i] - '0') + (b[i] - '0') + carry;
+        result.insert(result.begin(), (sum % 10) + '0');
+        carry = sum / 10;
+    }
+    if (carry > 0) {
+        result.insert(result.begin(), carry + '0');
+    }
+    return Bigint(result);
+}

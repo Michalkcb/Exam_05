@@ -17,6 +17,7 @@ public:
     Bigint(unsigned int n); // Konstruktor z unsigned int
     Bigint(const Bigint& original); // Konstruktor kopiujący
     ~Bigint(); // Destruktor
+    Bigint(const std::string& str) : _string(str) {} // Konstruktor z stringa
 
     std::string getValue() const; // Metoda zwracająca wartość jako string
 
