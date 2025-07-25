@@ -50,11 +50,6 @@ bool Bigint::operator>=(const Bigint& other) const {
     return !(*this < other);
 }
 
-Bigint& Bigint::operator++() {
-    *this = *this + Bigint(1);
-    return *this;
-}
-
 Bigint Bigint::operator<<(unsigned int value) const {
     Bigint result(*this);
     result._string.append(value, '0');
@@ -94,4 +89,15 @@ Bigint Bigint::operator+(const Bigint& other) const {
         result.insert(result.begin(), carry + '0');
     }
     return Bigint(result);
+}
+
+Bigint& Bigint::operator++() {
+    *this = *this + Bigint(1);
+    return *this;
+}
+
+Bigint Bigint::operator++(int) {
+    Bigint  temp = *this;
+    ++(*this);
+    return temp;
 }
