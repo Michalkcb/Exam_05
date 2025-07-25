@@ -101,3 +101,8 @@ Bigint Bigint::operator++(int) {
     ++(*this);
     return temp;
 }
+
+Bigint& Bigint::operator+=(const Bigint& other) {
+    *this = *this + other;
+    return *this;
+}
