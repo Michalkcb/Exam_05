@@ -25,7 +25,7 @@ int main() {
 	std::cout << "a + b = " << a + b << std::endl;
 	// std::cout << "(c += a)= " << (c += a) << std::endl;
 	std::cout << "b = " << b << std::endl;
-	// std::cout << "++b " << ++b << std::endl;
+	std::cout << "++b " << ++b << std::endl;
 	// std::cout << "b++ " << b++ << std::endl;
 	// std::cout << "(b << 10) + 42 = " << (b << 10) + 42 << std::endl;
 	std::cout << "(d <<=4 ) = " << (d <<= 4) << std::endl;
