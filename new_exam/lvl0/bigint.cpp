@@ -1,7 +1,5 @@
 #include "bigint.hpp"
 
-
-
 Bigint::Bigint() : _string("0") {}
 Bigint::Bigint(unsigned int n) {
     std::ostringstream oss;
