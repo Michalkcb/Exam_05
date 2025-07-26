@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:50 by mbany             #+#    #+#             */
-/*   Updated: 2025/07/26 11:16:53 by mbany            ###   ########.fr       */
+/*   Updated: 2025/07/26 16:14:13 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ public:
 
     // Operatory porównania
     Bigint operator+(const Bigint& other) const; // Operator dodawania
-    Bigint& operator+=(const Bigint& other); // Operator dodawania z przypisaniem
     Bigint operator++(int); // Operator inkrementacji (postfix)
-    Bigint& operator++(); // Operator inkrementacji (prefix)
     Bigint operator<<(unsigned int value) const; // Operator przesunięcia w lewo
+    Bigint& operator+=(const Bigint& other); // Operator dodawania z przypisaniem
+    Bigint& operator++(); // Operator inkrementacji (prefix)
     Bigint& operator<<=(unsigned int value); // Operator przesunięcia w lewo z przypisaniem
     Bigint& operator>>=(unsigned int value); // Operator przesunięcia w prawo z przypisaniem
 
-    bool operator<(const Bigint& other) const;
-    bool operator>(const Bigint& other) const;
     bool operator==(const Bigint& other) const;
     bool operator!=(const Bigint& other) const;
+    bool operator<(const Bigint& other) const;
+    bool operator>(const Bigint& other) const;
     bool operator<=(const Bigint& other) const;
     bool operator>=(const Bigint& other) const;
 
