@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:50 by mbany             #+#    #+#             */
-/*   Updated: 2025/07/27 14:42:34 by mbany            ###   ########.fr       */
+/*   Updated: 2025/07/27 16:20:47 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <stdexcept>
-#include <sstream>
 #include <math.h>
 
 class Bigint {
