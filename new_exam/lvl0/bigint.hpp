@@ -16,6 +16,7 @@ class Bigint {
 		~Bigint();
 		Bigint(const Bigint& orginal);
 		Bigint(unsigned int n);
+		Bigint(const std::string str) : _string(str) {}
 		
 		// Bigint& operator=(const Bigint& other);
 		std::string getValue() const;
@@ -35,5 +36,7 @@ class Bigint {
 		Bigint& operator++() ;
 		Bigint& operator<<=(unsigned int value);
 		Bigint& operator>>=(unsigned int value);
+
+		friend std::ostream& operator<<(std::ostream& os, const Bigint& Bigint);
 
 };
