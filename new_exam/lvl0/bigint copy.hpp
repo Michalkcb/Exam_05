@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:50 by mbany             #+#    #+#             */
-/*   Updated: 2025/07/27 16:20:47 by mbany            ###   ########.fr       */
+/*   Updated: 2025/07/29 20:05:02 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ public:
     Bigint& operator+=(const Bigint& other); // Operator dodawania z przypisaniem
     Bigint& operator++(); // Operator inkrementacji (prefix)
     Bigint& operator<<=(unsigned int value); // Operator przesunięcia w lewo z przypisaniem
-    Bigint& operator>>=(unsigned int value); // Operator przesunięcia w prawo z przypisaniem
+    Bigint& operator>>=(const Bigint& value); // Operator przesunięcia w prawo z przypisaniem
 
     bool operator==(const Bigint& other) const;
     bool operator!=(const Bigint& other) const;

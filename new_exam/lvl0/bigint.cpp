@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:59 by mbany             #+#    #+#             */
-/*   Updated: 2025/07/26 16:12:08 by mbany            ###   ########.fr       */
+/*   Updated: 2025/07/29 20:26:04 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,29 @@ Bigint& Bigint::operator<<=(unsigned int value) {
     return *this;
 }
 
-Bigint& Bigint::operator>>=(unsigned int value) {
-    if (value >= this->_string.length()) {
+// '11
+Bigint& Bigint::operator>>=(const Bigint& value) {
+    unsigned int shift = std::stoi(value.getValue());
+    if (shift >= this->_string.length()) {
         this->_string = "0";
     } else {
-        this->_string.erase(this->_string.length() - value);
+        this->_string.erase(this->_string.length() - shift);
     }
     return *this;
 }
+/* // '98
+Bigint& Bigint::operator>>=(const Bigint& value) {
+    std::istringstream iss(value.getValue());
+    unsigned int shift = 0;
+    iss >> shift;
+    if (shift >= this->_string.length()) {
+        this->_string = "0";
+    } else {
+        this->_string.erase(this->_string.length() - shift);
+    }
+    return *this;
+}
+*/
 
 Bigint Bigint::operator+(const Bigint& other) const {
     std::string a = this->_string;

@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:41 by mbany             #+#    #+#             */
-/*   Updated: 2025/07/26 16:12:01 by mbany            ###   ########.fr       */
+/*   Updated: 2025/07/29 20:02:52 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int main() {
 	std::cout << "++b " << ++b << std::endl;
 	std::cout << "b++ " << b++ << std::endl;
 	std::cout << "(b << 10) + 42 = " << (b << 10) + 42 << std::endl;
-	std::cout << "(d <<=4 ) = " << (d <<= 4) << std::endl;
-	std::cout << "(d >>= 2) = " << (d >>= 2) << std::endl;
+	std::cout << "(d <<= 4 ) = " << (d <<= 4) << std::endl;
+	std::cout << "(d >>= 2) = " << (d >>= (const Bigint)2) << std::endl;
 	std::cout << "a = " << a << std::endl;
 	std::cout << "d = " << d << std::endl;
 	std::cout << "(d < a) = " << (d < a) << std::endl;
