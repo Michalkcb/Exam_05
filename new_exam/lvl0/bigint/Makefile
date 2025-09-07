@@ -1,4 +1,4 @@
-NAME = a.out
+NAME = bigint
 SRC = main.cpp bigint.cpp
 
 all:

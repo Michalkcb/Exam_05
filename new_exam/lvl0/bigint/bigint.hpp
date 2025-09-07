@@ -27,12 +27,17 @@ public:
     Bigint operator++(int); // Operator inkrementacji (postfix)
     Bigint operator<<(unsigned int value) const; // Operator przesunięcia w lewo
     Bigint operator<<(const Bigint& value) const; // Operator przesunięcia w **lewo**
+    Bigint operator>>(unsigned int value) const;
+    Bigint operator>>(const Bigint& value) const;
    
     Bigint& operator+=(const Bigint& other); // Operator dodawania z przypisaniem
     Bigint& operator++(); // Operator inkrementacji (prefix)
     Bigint& operator<<=(unsigned int value); // Operator przesunięcia w lewo z przypisaniem
+    Bigint& operator>>=(unsigned int value); // Operator przesunięcia w prawo z przypisaniem
     Bigint& operator>>=(const Bigint& value); // Operator przesunięcia w **prawo**
     Bigint& operator<<=(const Bigint& value); // Operator przesunięcia w lewo z przypisaniem
+
+
 
     bool operator==(const Bigint& other) const;
     bool operator!=(const Bigint& other) const;
