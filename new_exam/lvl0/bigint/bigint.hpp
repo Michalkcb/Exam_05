@@ -32,14 +32,14 @@ public:
 
     // Operatory przesunięcia w lewo
     Bigint operator<<(unsigned int value) const;    // Operator przesunięcia w lewo
-    Bigint operator<<(const Bigint& value) const;   // Operator przesunięcia w **lewo**
     Bigint& operator<<=(unsigned int value);        // Operator przesunięcia w lewo z przypisaniem
+    Bigint operator<<(const Bigint& value) const;   // Operator przesunięcia w **lewo**
     Bigint& operator<<=(const Bigint& value);       // Operator przesunięcia w lewo z przypisaniem
     
     // Operatory przesunięcia w prawo
     Bigint operator>>(unsigned int value) const;    // Operator przesunięcia w **prawo**
-    Bigint operator>>(const Bigint& value) const;   // Operator przesunięcia w **prawo**
     Bigint& operator>>=(unsigned int value);        // Operator przesunięcia w prawo z przypisaniem
+    Bigint operator>>(const Bigint& value) const;   // Operator przesunięcia w **prawo**
     Bigint& operator>>=(const Bigint& value);       // Operator przesunięcia w **prawo**
     
     // Operatory porównania
