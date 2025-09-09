@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:59 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/07 15:29:37 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/09 18:55:05 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,8 @@ Bigint Bigint::operator+(const Bigint& other) const {
     std::string a = this->_string;
     std::string b = other._string;
 
-    if ( a.length() < b.length() ) {
+    if (a.length() < b.length())
         std::swap(a, b);
-    }
     b.insert(0, a.length() - b.length(), '0'); // Pad with leading zeros
     std::string result ="";
     int carry = 0;
