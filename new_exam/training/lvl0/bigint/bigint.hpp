@@ -18,24 +18,20 @@ operator++
 */
 
 #pragma once
-#include <iostream>
 #include <string>
 #include <sstream>
-
-
+#include <iostream>
 
 class Bigint {
 	private:
-	std::string _string;
-
+		std::string _string;
 	public:
 	Bigint();
-	Bigint(const Bigint& orginal);
 	Bigint(unsigned int n);
-	Bigint(const std::string& str) : _string(str) {};
+	Bigint(const Bigint& orginal);
 	~Bigint();
-
-	friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
+	
+	Bigint(const std::string& str) : _string(str) {};
 
 	bool operator==(const Bigint& other) const;
 	bool operator!=(const Bigint& other) const;
