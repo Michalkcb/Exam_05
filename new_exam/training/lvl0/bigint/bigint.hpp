@@ -19,8 +19,8 @@ operator++
 
 #pragma once
 #include <string>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
 class Bigint {
 	private:
@@ -30,9 +30,12 @@ class Bigint {
 	Bigint(unsigned int n);
 	Bigint(const Bigint& orginal);
 	~Bigint();
-	
 	Bigint(const std::string& str) : _string(str) {};
 
 	bool operator==(const Bigint& other) const;
 	bool operator!=(const Bigint& other) const;
+
+	std::string getValue() const;
+
+	friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
 };
