@@ -16,25 +16,27 @@ operator+
 operator+=
 operator++
 */
+
 #pragma once
 #include <iostream>
 #include <string>
 #include <sstream>
 
+
+
 class Bigint {
 	private:
-		std::string _string;
+	std::string _string;
+
 	public:
-	//konstruktory
 	Bigint();
 	Bigint(const Bigint& orginal);
 	Bigint(unsigned int n);
+	Bigint(const std::string& str) : _string(str) {};
 	~Bigint();
-	Bigint(const std::string& str) :_string(str) {};
 
-	std::string getValue() const;
 	friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
+
 	bool operator==(const Bigint& other) const;
 	bool operator!=(const Bigint& other) const;
-
 };
