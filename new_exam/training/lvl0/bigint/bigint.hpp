@@ -39,5 +39,5 @@ class Bigint {
 		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
 
 		Bigint operator<<(unsigned int value) const;
-		// Bigint operator>>(unsigned int value) const;
+		Bigint operator>>(unsigned int value) const;
 };

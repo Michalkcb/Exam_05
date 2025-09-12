@@ -32,8 +32,11 @@ Bigint Bigint::operator<<(unsigned int value) const {
 	Bigint result(*this);
 	result._string.append(value, '0');
 	return result;
+};
+
+Bigint Bigint::operator>>(unsigned int value) const {
+	if (value >= _string.length())
+		return Bigint(0);
+	std::string result = _string.substr(0, _string.length() -value);
+	return Bigint(result);
 }
-
-// Bigint Bigint::operator>>(unsigned int value) const {
-
-// };
