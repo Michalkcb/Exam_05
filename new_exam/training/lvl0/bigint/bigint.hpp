@@ -36,4 +36,5 @@ class Bigint {
 		bool operator!=(const Bigint& other) const;
 
 		std::string getValue() const;
+		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
 };

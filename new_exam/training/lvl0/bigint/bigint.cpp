@@ -18,3 +18,12 @@ bool Bigint::operator!=(const Bigint& other) const {
 
 std::string Bigint::getValue() const {return _string;};
 
+std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
+	std::string value = bigint.getValue();
+	size_t first_non_zero = value.find_first_not_of('0');
+	if (first_non_zero == std::string::npos)
+		os << "0";
+	else
+		os << value.substr(first_non_zero);
+	return os;
+}
