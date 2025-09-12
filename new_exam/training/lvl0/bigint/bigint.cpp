@@ -27,3 +27,13 @@ std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
 		os << value.substr(first_non_zero);
 	return os;
 }
+
+Bigint Bigint::operator<<(unsigned int value) const {
+	Bigint result(*this);
+	result._string.append(value, '0');
+	return result;
+}
+
+// Bigint Bigint::operator>>(unsigned int value) const {
+
+// };
