@@ -26,16 +26,14 @@ class Bigint {
 	private:
 		std::string _string;
 	public:
-	Bigint();
-	Bigint(unsigned int n);
-	Bigint(const Bigint& orginal);
-	~Bigint();
-	Bigint(const std::string& str) : _string(str) {};
+		Bigint();
+		Bigint(unsigned int n);
+		Bigint(const Bigint& orginal);
+		Bigint(const std::string str) : _string(str) {};
+		~Bigint();
 
-	bool operator==(const Bigint& other) const;
-	bool operator!=(const Bigint& other) const;
+		bool operator==(const Bigint& other) const;
+		bool operator!=(const Bigint& other) const;
 
-	std::string getValue() const;
-
-	friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
+		std::string getValue() const;
 };
