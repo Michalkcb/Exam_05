@@ -43,8 +43,24 @@ Bigint& Bigint::operator<<=(unsigned int value) {
 	*this = *this << value;
 	return *this;
 };
-Bigint& Bigint::operator>>=(unsigned int value) 
-{
+Bigint& Bigint::operator>>=(unsigned int value) {
 	*this = *this >> value;
 	return *this;
+};
+
+Bigint Bigint::operator<<(const Bigint& other) const {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this << shift;
+};
+Bigint Bigint::operator>>(const Bigint& other) const {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this >> shift;
+};
+Bigint& Bigint::operator<<=(const Bigint& other) {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this <<= shift;
+};
+Bigint& Bigint::operator>>=(const Bigint& other) {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this >>= shift;
 };
