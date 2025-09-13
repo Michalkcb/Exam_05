@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:41 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/13 16:01:44 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/13 17:00:19 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ int main() {
 	std::cout << "a = " << a << std::endl; // a = 42
 	std::cout << "d = " << d << std::endl; // d = 5348
 
-	// std::cout << "(d < a) = " << (d < a) << std::endl; // (d < a) = 0
-	// std::cout << "(d > a) = " << (d > a) << std::endl; // (d > a) = 1
+	std::cout << "(d < a) = " << (d < a) << std::endl; // (d < a) = 0
+	std::cout << "(d > a) = " << (d > a) << std::endl; // (d > a) = 1
 	std::cout << "(d == d) = " << (d == d) << std::endl; // (d == d) = 1
 	std::cout << "(b == d) = " << (b == d) << std::endl; // (d == d) = 1
 	std::cout << "(d != a) = " << (d != a) << std::endl; // (d != a) = 1
-	// std::cout << "(d <= a) = " << (d <= a) << std::endl; // (d <= a) = 0
-	// std::cout << "(d >= a) = " << (d >= a) << std::endl; // (d >= a) = 1
+	std::cout << "(d <= a) = " << (d <= a) << std::endl; // (d <= a) = 0
+	std::cout << "(d >= a) = " << (d >= a) << std::endl; // (d >= a) = 1
 
 	// // extra
-	// Bigint x(12345678); Bigint y(5);
-	// std::cout << "(x << y) = " << (x << y) << ", x: " << x << ", y: " << y << std::endl;
-	// std::cout << "(x >>= y) = " << (x >>= y) << ", x: " << x << ", y: " << y << std::endl;
-	// std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
+	Bigint x(12345678); Bigint y(5);
+	std::cout << "(x << y) = " << (x << y) << ", x: " << x << ", y: " << y << std::endl;
+	std::cout << "(x >>= y) = " << (x >>= y) << ", x: " << x << ", y: " << y << std::endl;
+	std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
 
-	// std::cout << "x= " << (x <<= 5) << ", y= " << (y <<= 12) << std::endl;
-	// std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
+	std::cout << "x= " << (x <<= 5) << ", y= " << (y <<= 12) << std::endl;
+	std::cout << "(x >= y) = " << (x >= y) << ", x: " << x << ", y: " << y << std::endl;
 
 	return (0);
 	}

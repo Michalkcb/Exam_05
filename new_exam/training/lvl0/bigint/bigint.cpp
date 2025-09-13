@@ -27,6 +27,7 @@ bool Bigint::operator!=(const Bigint& other) const {
 	return this->_string != other._string;
 };
 
+//operatory unsigned int
 Bigint Bigint::operator<<(unsigned int value) const {
 	Bigint result(*this);
 	result._string.append(value,'0');
@@ -38,7 +39,6 @@ Bigint Bigint::operator>>(unsigned int value) const {
 	std::string result = _string.substr(0, _string.length() - value);
 	return Bigint(result);
 };
-
 Bigint& Bigint::operator<<=(unsigned int value) {
 	*this = *this << value;
 	return *this;
@@ -48,6 +48,7 @@ Bigint& Bigint::operator>>=(unsigned int value) {
 	return *this;
 };
 
+//konwersja Bigint na unsigned int wykorzystują powyższe operatoru unsigned int
 Bigint Bigint::operator<<(const Bigint& other) const {
 	unsigned int shift = std::stoi(other.getValue());
 	return *this << shift;
@@ -63,4 +64,20 @@ Bigint& Bigint::operator<<=(const Bigint& other) {
 Bigint& Bigint::operator>>=(const Bigint& other) {
 	unsigned int shift = std::stoi(other.getValue());
 	return *this >>= shift;
+};
+
+//reszta operatorów. Implementacja <. Rezta wykorzystuje operator <
+bool Bigint::operator<(const Bigint& other) const {
+if (this->_string.length() != other._string.length())
+	return this->_string.length() < other._string.length();
+return this->_string < other._string;
+};
+bool Bigint::operator>(const Bigint& other) const {
+	return other < *this;
+};
+bool Bigint::operator<=(const Bigint& other) const {
+	return !(*this > other);
+};
+bool Bigint::operator>=(const Bigint& other) const {
+	return !(*this < other);
 };
