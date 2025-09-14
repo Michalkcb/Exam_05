@@ -45,14 +45,25 @@ bool Bigint::operator>=(const Bigint& other) const {
 
 Bigint Bigint::operator<<(unsigned int value) const {
 	Bigint result(*this);
-	result._string.append(value,'0');
+	result._string.append(value, '0');
 	return result;
 };
-Bigint Bigint::operator>>(unsigned int value) const {};
-Bigint Bigint::operator>>=(unsigned int value) {};
-Bigint Bigint::operator<<=(unsigned int value) {};
+Bigint Bigint::operator<<=(unsigned int value) {
+	this->_string.append(value, '0');
+	return *this;
+};
+Bigint Bigint::operator>>(unsigned int value) const {
+	if (this->_string.length() < value)
+		return Bigint(0);
+	std::string result = _string.substr(0, _string.length() - value);
+	return result;
+};
+Bigint Bigint::operator>>=(unsigned int value) {
+	*this = *this >> value;
+	return *this;
+};
 
 Bigint& Bigint::operator<<(const Bigint& other) const {};
-Bigint& Bigint::operator>>(const Bigint& other) const {};
 Bigint& Bigint::operator<<=(const Bigint& other) {};
+Bigint& Bigint::operator>>(const Bigint& other) const {};
 Bigint& Bigint::operator>>=(const Bigint& other) {};
