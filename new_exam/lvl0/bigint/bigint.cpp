@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:59 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/11 17:28:04 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/14 11:22:50 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,17 @@ bool Bigint::operator<(const Bigint& other) const {
         return this->_string.length() < other._string.length();
     return this->_string < other._string;
 }
-
 bool Bigint::operator>(const Bigint& other) const {
-    if (this->_string.length() != other._string.length())
-        return this->_string.length() > other._string.length();
-    return this->_string > other._string;
-}
-
+	return other < *this;
+};
 bool Bigint::operator<=(const Bigint& other) const {
     return !(*this > other);
 }
-
 bool Bigint::operator>=(const Bigint& other) const {
     return !(*this < other);
 }
+
+
 
 Bigint Bigint::operator<<(unsigned int value) const {
     Bigint result(*this);
@@ -73,9 +70,22 @@ Bigint& Bigint::operator<<=(unsigned int value) {
     return *this;
 }
 
+Bigint Bigint::operator>>(unsigned int value) const {
+    if (value >= _string.length()) {
+        return Bigint(0);  // jeśli shift większy niż liczba cyfr, zwróć 0
+    }
+    std::string result = _string.substr(0, _string.length() - value);
+    return Bigint(result);
+}
+
+Bigint& Bigint::operator>>=(unsigned int value) {
+    *this = *this >> value;
+    return *this;
+}
+
 // '11
-Bigint& Bigint::operator>>=(const Bigint& value) {
-    unsigned int shift = std::stoi(value.getValue());
+Bigint& Bigint::operator>>=(const Bigint& other) {
+    unsigned int shift = std::stoi(other.getValue());
     if (shift >= this->_string.length()) {
         this->_string = "0";
     } else {
@@ -96,6 +106,21 @@ Bigint& Bigint::operator>>=(const Bigint& value) {
     return *this;
 }
 */
+
+Bigint Bigint::operator<<(const Bigint& other) const {
+    unsigned int shift = std::stoi(other.getValue());
+    return *this << shift;  // użyj istniejącej implementacji
+}
+
+Bigint& Bigint::operator<<=(const Bigint& other) {
+    unsigned int shift = std::stoi(other.getValue());
+    return *this <<= shift;  // użyj istniejącej implementacji
+}
+
+Bigint Bigint::operator>>(const Bigint& other) const {
+    unsigned int shift = std::stoi(other.getValue());
+    return *this >> shift;  // użyj implementacji z unsigned int
+}
 
 Bigint Bigint::operator+(const Bigint& other) const {
     std::string a = this->_string;
@@ -130,32 +155,5 @@ Bigint Bigint::operator++(int) {
 
 Bigint& Bigint::operator+=(const Bigint& other) {
     *this = *this + other;
-    return *this;
-}
-
-Bigint Bigint::operator<<(const Bigint& value) const {
-    unsigned int shift = std::stoi(value.getValue());
-    return *this << shift;  // użyj istniejącej implementacji
-}
-
-Bigint& Bigint::operator<<=(const Bigint& value) {
-    unsigned int shift = std::stoi(value.getValue());
-    return *this <<= shift;  // użyj istniejącej implementacji
-}
-
-Bigint Bigint::operator>>(unsigned int value) const {
-    if (value >= _string.length()) {
-        return Bigint(0);  // jeśli shift większy niż liczba cyfr, zwróć 0
-    }
-    std::string result = _string.substr(0, _string.length() - value);
-    return Bigint(result);
-}
-
-Bigint Bigint::operator>>(const Bigint& value) const {
-    unsigned int shift = std::stoi(value.getValue());
-    return *this >> shift;  // użyj implementacji z unsigned int
-}
-Bigint& Bigint::operator>>=(unsigned int value) {
-    *this = *this >> value;
     return *this;
 }

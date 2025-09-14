@@ -30,17 +30,17 @@ public:
     Bigint operator++(int);                         // Operator inkrementacji (postfix)
     Bigint& operator++();                           // Operator inkrementacji (prefix)
 
-    // Operatory przesunięcia w lewo
+    // Operatory przesunięcia unsigned int
     Bigint operator<<(unsigned int value) const;    // Operator przesunięcia w lewo
-    Bigint& operator<<=(unsigned int value);        // Operator przesunięcia w lewo z przypisaniem
-    Bigint operator<<(const Bigint& other) const;   // Operator przesunięcia w **lewo**
-    Bigint& operator<<=(const Bigint& other);       // Operator przesunięcia w lewo z przypisaniem
-    
-    // Operatory przesunięcia w prawo
     Bigint operator>>(unsigned int value) const;    // Operator przesunięcia w **prawo**
+    Bigint& operator<<=(unsigned int value);        // Operator przesunięcia w lewo z przypisaniem
     Bigint& operator>>=(unsigned int value);        // Operator przesunięcia w prawo z przypisaniem
+    
+    // Operatory przesunięcia other
     Bigint operator>>(const Bigint& other) const;   // Operator przesunięcia w **prawo**
+    Bigint operator<<(const Bigint& other) const;   // Operator przesunięcia w **lewo**
     Bigint& operator>>=(const Bigint& other);       // Operator przesunięcia w **prawo**
+    Bigint& operator<<=(const Bigint& other);       // Operator przesunięcia w lewo z przypisaniem
     
     // Operatory porównania
     bool operator==(const Bigint& other) const;
