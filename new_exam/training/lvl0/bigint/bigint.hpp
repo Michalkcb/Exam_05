@@ -32,8 +32,9 @@ class Bigint {
 		~Bigint();
 		Bigint(const std::string str) : _string(str) {};
 
-		std::string getValue();
-		friend std::ostream& operator<<(std::ostream os, const Bigint& bigint);
+		std::string getValue() const;
+
+		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
 
 		bool operator==(const Bigint& other) const;
 		bool operator!=(const Bigint& other) const;

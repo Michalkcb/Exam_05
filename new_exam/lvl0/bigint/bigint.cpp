@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:59 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/14 11:22:50 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/14 14:41:12 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ std::string Bigint::getValue() const {return _string;}
 bool Bigint::operator==(const Bigint& other) const {
     return this->_string == other._string;
 }
-
 bool Bigint::operator!=(const Bigint& other) const {
     return this->_string != other._string;
 }
