@@ -48,7 +48,7 @@ Bigint Bigint::operator<<(unsigned int value) const {
 	result._string.append(value, '0');
 	return result;
 };
-Bigint Bigint::operator<<=(unsigned int value) {
+Bigint& Bigint::operator<<=(unsigned int value) {
 	this->_string.append(value, '0');
 	return *this;
 };
@@ -58,12 +58,28 @@ Bigint Bigint::operator>>(unsigned int value) const {
 	std::string result = _string.substr(0, _string.length() - value);
 	return result;
 };
-Bigint Bigint::operator>>=(unsigned int value) {
+Bigint& Bigint::operator>>=(unsigned int value) {
 	*this = *this >> value;
 	return *this;
 };
 
-Bigint& Bigint::operator<<(const Bigint& other) const {};
-Bigint& Bigint::operator<<=(const Bigint& other) {};
-Bigint& Bigint::operator>>(const Bigint& other) const {};
-Bigint& Bigint::operator>>=(const Bigint& other) {};
+Bigint Bigint::operator<<(const Bigint& other) const {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this << shift;
+};
+Bigint& Bigint::operator<<=(const Bigint& other) {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this <<= shift;
+};
+Bigint& Bigint::operator>>=(const Bigint& other) {
+	unsigned int shift = std::stoi(other.getValue());
+	if (shift >= this->_string.length())
+		this->_string = "0";
+	else
+		this->_string.erase(this->_string.length() - shift);
+	return *this;
+};
+Bigint Bigint::operator>>(const Bigint& other) const {
+	unsigned int shift = std::stoi(other.getValue());
+	return *this >> shift;
+};

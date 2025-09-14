@@ -45,11 +45,11 @@ class Bigint {
 
 		Bigint operator<<(unsigned int value) const;
 		Bigint operator>>(unsigned int value) const;
-		Bigint operator>>=(unsigned int value);
-		Bigint operator<<=(unsigned int value);
+		Bigint& operator>>=(unsigned int value);
+		Bigint& operator<<=(unsigned int value);
 
-		Bigint& operator<<(const Bigint& other) const;
-		Bigint& operator>>(const Bigint& other) const;
+		Bigint operator<<(const Bigint& other) const;
+		Bigint operator>>(const Bigint& other) const;
 		Bigint& operator<<=(const Bigint& other);
 		Bigint& operator>>=(const Bigint& other);
 
