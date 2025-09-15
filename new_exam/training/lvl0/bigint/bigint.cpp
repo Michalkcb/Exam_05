@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
 	size_t first_non_zero = value.find_first_not_of('0');
 	if (first_non_zero == std::string::npos)
 		os << "0";
-	else 
+	else
 		os << value.substr(first_non_zero);
 	return os;
 };
@@ -40,7 +40,7 @@ bool Bigint::operator>=(const Bigint& other) const {
 	return !(*this < other);
 };
 bool Bigint::operator<=(const Bigint& other) const {
-	return !(*this > other);
+		return !(*this > other);
 };
 
 Bigint Bigint::operator<<(unsigned int value) const {
@@ -49,9 +49,9 @@ Bigint Bigint::operator<<(unsigned int value) const {
 	return result;
 };
 Bigint Bigint::operator>>(unsigned int value) const {
-	if (this->_string.length() <= value)
+	if (value > this->_string.length())
 		return Bigint(0);
-	std::string result = this->_string.substr(0, _string.length() - value);
+	std::string result = _string.substr(0, _string.length() - value);
 	return Bigint(result);
 };
 Bigint& Bigint::operator<<=(unsigned int value) {
@@ -62,7 +62,6 @@ Bigint& Bigint::operator>>=(unsigned int value) {
 	*this = *this >> value;
 	return *this;
 };
-
 
 Bigint Bigint::operator<<(const Bigint& other) const {
 	unsigned int shift = std::stoi(other.getValue());
