@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:59 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/14 17:03:26 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/15 16:01:56 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,16 @@ Bigint Bigint::operator<<(unsigned int value) const {
     result._string.append(value, '0');
     return result;
 }
-Bigint& Bigint::operator<<=(unsigned int value) {
-    this->_string.append(value, '0');
-    return *this;
-}
 Bigint Bigint::operator>>(unsigned int value) const {
     if (value >= _string.length()) {
         return Bigint(0);  // jeśli shift większy niż liczba cyfr, zwróć 0
     }
     std::string result = _string.substr(0, _string.length() - value);
     return Bigint(result);
+}
+Bigint& Bigint::operator<<=(unsigned int value) {
+    this->_string.append(value, '0');
+    return *this;
 }
 Bigint& Bigint::operator>>=(unsigned int value) {
     *this = *this >> value;

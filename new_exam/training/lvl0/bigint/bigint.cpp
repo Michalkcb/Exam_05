@@ -15,9 +15,9 @@ std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
 	size_t first_non_zero = value.find_first_not_of('0');
 	if (first_non_zero == std::string::npos)
 		os << "0";
-	else
+	else 
 		os << value.substr(first_non_zero);
-	return os; 
+	return os;
 };
 
 bool Bigint::operator==(const Bigint& other) const {
@@ -32,7 +32,9 @@ bool Bigint::operator<(const Bigint& other) const {
 	return this->_string < other._string;
 };
 bool Bigint::operator>(const Bigint& other) const {
-	return other < *this;
+	if (this->_string.length() != other._string.length())
+		return this->_string.length() > other._string.length();
+	return this->_string > other._string;
 };
 bool Bigint::operator>=(const Bigint& other) const {
 	return !(*this < other);
@@ -47,7 +49,7 @@ Bigint Bigint::operator<<(unsigned int value) const {
 	return result;
 };
 Bigint Bigint::operator>>(unsigned int value) const {
-	if (this->_string.length() < value)
+	if (this->_string.length() <= value)
 		return Bigint(0);
 	std::string result = this->_string.substr(0, _string.length() - value);
 	return Bigint(result);
