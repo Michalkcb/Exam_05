@@ -87,25 +87,23 @@ Bigint Bigint::operator+(const Bigint& other) const {
 	std::string result = "";
 	int carry = 0;
 
-	int i = a.length() - 1;
-	int j = b.length() - 1;
+	int i = a.length();
+	int j = b.length();
 
-	while (i >= 0 || j >= 0 || carry > 0) {
+	while ( i >=0 || j >= 0 || carry > 0) {
 		int sum = carry;
-
-		if (i >= 0) {
-			sum += a[i--] - '0'; // Dodaj cyfrę z 'a' i przesuń indeks
-		}
-		if (j >= 0) {
-			sum += b[j--] - '0'; // Dodaj cyfrę z 'b' i przesuń indeks
-		}
-
-		result.push_back((sum % 10) + '0'); // Dodaj na koniec (szybkie)
+		if (i >= 0)
+			sum += a[i--] - '0';
+		if (j >= 0)
+			sum += b[j--] - '0';
+		result.push_back((sum % 10) + '0');
 		carry = sum / 10;
 	}
+
 	std::reverse(result.begin(), result.end());
 	return Bigint(result);
-}
+};
+
 
 Bigint& Bigint::operator++() {
     *this = *this + Bigint(1);

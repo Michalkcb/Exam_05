@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 11:16:59 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/15 16:01:56 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/16 19:43:52 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,24 +115,51 @@ Bigint Bigint::operator>>(const Bigint& other) const {
     return *this >> shift;  // użyj implementacji z unsigned int
 }
 
-Bigint Bigint::operator+(const Bigint& other) const {
-    std::string a = this->_string;
-    std::string b = other._string;
+// Bigint Bigint::operator+(const Bigint& other) const {
+//     std::string a = this->_string;
+//     std::string b = other._string;
 
-    if (a.length() < b.length())
-        std::swap(a, b);
-    b.insert(0, a.length() - b.length(), '0'); // Pad with leading zeros
-    std::string result ="";
-    int carry = 0;
-    for (int i = a.length() - 1; i >= 0; --i) {
-        int sum = (a[i] - '0') + (b[i] - '0') + carry;
-        result.insert(result.begin(), (sum % 10) + '0');
-        carry = sum / 10;
-    }
-    if (carry > 0) {
-        result.insert(result.begin(), carry + '0');
-    }
-    return Bigint(result);
+//     if (a.length() < b.length())
+//         std::swap(a, b);
+//     b.insert(0, a.length() - b.length(), '0'); // Pad with leading zeros
+//     std::string result ="";
+//     int carry = 0;
+//     for (int i = a.length() - 1; i >= 0; --i) {
+//         int sum = (a[i] - '0') + (b[i] - '0') + carry;
+//         result.insert(result.begin(), (sum % 10) + '0');
+//         carry = sum / 10;
+//     }
+//     if (carry > 0) {
+//         result.insert(result.begin(), carry + '0');
+//     }
+//     return Bigint(result);
+// }
+
+Bigint Bigint::operator+(const Bigint& other) const {
+	const std::string& a = this->_string;
+	const std::string& b = other._string;
+
+	std::string result = "";
+	int carry = 0;
+
+	int i = a.length() - 1;
+	int j = b.length() - 1;
+
+	while (i >= 0 || j >= 0 || carry > 0) {
+		int sum = carry;
+
+		if (i >= 0) {
+			sum += a[i--] - '0'; // Dodaj cyfrę z 'a' i przesuń indeks
+		}
+		if (j >= 0) {
+			sum += b[j--] - '0'; // Dodaj cyfrę z 'b' i przesuń indeks
+		}
+
+		result.push_back((sum % 10) + '0'); // Dodaj na koniec (szybkie)
+		carry = sum / 10;
+	}
+	std::reverse(result.begin(), result.end());
+	return Bigint(result);
 }
 
 Bigint& Bigint::operator++() {
