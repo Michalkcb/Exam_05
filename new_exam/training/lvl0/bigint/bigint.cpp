@@ -91,10 +91,10 @@ Bigint Bigint::operator+(const Bigint& other) const {
 	while (i >= 0 || j >= 0 || carry > 0) {
 		int sum = carry;
 
-		if (i>= 0)
-			sum += a[i--] - '0';
-		if (j>= 0)
-			sum += b[j--] - '0';
+		if (i >=0)
+			sum += a[i--] -'0';
+		if (j >=0)
+			sum += b[j--] -'0';
 		result.push_back((sum % 10) + '0');
 		carry = sum / 10;
 	}
