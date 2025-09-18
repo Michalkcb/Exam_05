@@ -10,7 +10,6 @@ Bigint::Bigint(const Bigint& orginal) : _string(orginal._string) {};
 Bigint::~Bigint() {};
 
 std::string Bigint::getValue() const {return _string;};
-
 std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
 	std::string value = bigint.getValue();
 	size_t first_non_zero = value.find_first_not_of('0');
@@ -50,16 +49,15 @@ Bigint Bigint::operator<<(unsigned int value) const {
 Bigint Bigint::operator>>(unsigned int value) const {
 	if (value >= this->_string.length())
 		return Bigint(0);
+	
 	std::string result = _string.substr(0, _string.length() - value);
 	return Bigint(result);
 };
 Bigint& Bigint::operator<<=(unsigned int value) {
-	*this = *this << value;
-	return *this;
+	return *this = *this << value;
 };
 Bigint& Bigint::operator>>=(unsigned int value) {
-	*this = *this >> value;
-	return *this;
+	return *this = *this >> value;
 };
 
 
@@ -74,7 +72,7 @@ Bigint Bigint::operator>>(const Bigint& other) const {
 Bigint& Bigint::operator<<=(const Bigint& other) {
 	unsigned int shift = std::stoi(other.getValue());
 	return *this <<= shift;
-} ;
+};
 Bigint& Bigint::operator>>=(const Bigint& other) {
 	unsigned int shift = std::stoi(other.getValue());
 	return *this >>= shift;
@@ -87,19 +85,19 @@ Bigint Bigint::operator+(const Bigint& other) const {
 	std::string result = "";
 	int carry = 0;
 
-	int i = a.length();
-	int j = b.length();
+	int i = a.length() -1;
+	int j = b.length() -1;
 
-	while ( i >=0 || j >= 0 || carry > 0) {
+	while ( i >= 0 || j >=0 || carry > 0) {
 		int sum = carry;
+
 		if (i >= 0)
-			sum += a[i--] - '0';
+			sum += a[i--] -'0';
 		if (j >= 0)
-			sum += b[j--] - '0';
+			sum += b[j--] -'0';
 		result.push_back((sum % 10) + '0');
 		carry = sum / 10;
 	}
-
 	std::reverse(result.begin(), result.end());
 	return Bigint(result);
 };
@@ -107,11 +105,13 @@ Bigint& Bigint::operator++() {
     *this = *this + Bigint(1);
     return *this;
 }
+
 Bigint Bigint::operator++(int) {
     Bigint  temp = *this;
     ++(*this);
     return temp;
 }
+
 Bigint& Bigint::operator+=(const Bigint& other) {
     *this = *this + other;
     return *this;
