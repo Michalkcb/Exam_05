@@ -57,6 +57,4 @@ operator++
 		Bigint& operator+=(const Bigint& other);
 		Bigint operator++(int);
 		Bigint& operator++();
-
-
  };

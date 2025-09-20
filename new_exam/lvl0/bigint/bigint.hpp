@@ -1,57 +1,42 @@
+ #pragma once
+ #include <string>
+ #include <ostream>
+ #include <sstream>
+ #include <iostream>
+ #include <algorithm>
 
-#ifndef BIGINT_HPP
-#define BIGINT_HPP
+ class Bigint {
+	private:
+		std::string _string;
+	public:
+		Bigint();
+		Bigint(unsigned int n);
+		Bigint(const Bigint& orginal);
+		~Bigint();
+		Bigint(const std::string str) : _string(str) {};
 
-#include <string>
-#include <iostream>
-#include <sstream>
-#include <algorithm>
-#include <stdexcept>
-#include <math.h>
+		std::string getValue() const;
+		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
 
-class Bigint {
-private:
-    std::string _string;
+		bool operator==(const Bigint& other) const;
+		bool operator!=(const Bigint& other) const;
+		bool operator<(const Bigint& other) const;
+		bool operator>(const Bigint& other) const;
+		bool operator<=(const Bigint& other) const;
+		bool operator>=(const Bigint& other) const;
 
-public:
-    Bigint();                                        // Domyślny konstruktor
-    Bigint(unsigned int n);                          // Konstruktor z unsigned int
-    Bigint(const Bigint& original);                  // Konstruktor kopiujący
-    ~Bigint();                                       // Destruktor
-    Bigint(const std::string& str) : _string(str) {} // Konstruktor z stringa
+		Bigint operator<<(const Bigint& other) const;
+		Bigint operator>>(const Bigint& other) const;
+		Bigint& operator<<=(const Bigint& other);
+		Bigint& operator>>=(const Bigint& other);
 
-    std::string getValue() const;                   // Metoda zwracająca wartość jako string
+		Bigint operator<<(unsigned int value) const;
+		Bigint operator>>(unsigned int value) const;
+		Bigint& operator<<=(unsigned int value);
+		Bigint& operator>>=(unsigned int value);
 
-    // Operatory arytmetyczne
-    Bigint operator+(const Bigint& other) const;    // Operator dodawania
-    Bigint& operator+=(const Bigint& other);        // Operator dodawania z przypisaniem
-    
-    // Operatory inkrementacji
-    Bigint operator++(int);                         // Operator inkrementacji (postfix)
-    Bigint& operator++();                           // Operator inkrementacji (prefix)
-
-    // Operatory przesunięcia unsigned int
-    Bigint operator<<(unsigned int value) const;    // Operator przesunięcia w lewo
-    Bigint operator>>(unsigned int value) const;    // Operator przesunięcia w **prawo**
-    Bigint& operator<<=(unsigned int value);        // Operator przesunięcia w lewo z przypisaniem
-    Bigint& operator>>=(unsigned int value);        // Operator przesunięcia w prawo z przypisaniem
-    
-    // Operatory przesunięcia other
-    Bigint operator>>(const Bigint& other) const;   // Operator przesunięcia w **prawo**
-    Bigint operator<<(const Bigint& other) const;   // Operator przesunięcia w **lewo**
-    Bigint& operator>>=(const Bigint& other);       // Operator przesunięcia w **prawo**
-    Bigint& operator<<=(const Bigint& other);       // Operator przesunięcia w lewo z przypisaniem
-    
-    // Operatory porównania
-    bool operator==(const Bigint& other) const;
-    bool operator!=(const Bigint& other) const;
-    bool operator<(const Bigint& other) const;
-    bool operator>(const Bigint& other) const;
-    bool operator<=(const Bigint& other) const;
-    bool operator>=(const Bigint& other) const;
-
-    // Operator wypisywania
-    friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
-};
-
-#endif
+		Bigint operator+(const Bigint& other) const;
+		Bigint& operator+=(const Bigint& other);
+		Bigint operator++(int);
+		Bigint& operator++();
+ };
