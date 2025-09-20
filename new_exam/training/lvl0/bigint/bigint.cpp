@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
 	size_t first_non_zero = value.find_first_not_of('0');
 	if (first_non_zero == std::string::npos)
 		os << "0";
-	else 
+	else
 		os << value.substr(first_non_zero);
 	return os;
 };
@@ -61,7 +61,6 @@ Bigint& Bigint::operator>>=(unsigned int value) {
 	return *this;
 };
 
-
 Bigint Bigint::operator<<(const Bigint& other) const {
 	unsigned int shift = std::stoi(other.getValue());
 	return *this << shift;
@@ -79,6 +78,7 @@ Bigint& Bigint::operator>>=(const Bigint& other) {
 	return *this >>= shift;
 };
 
+
 Bigint Bigint::operator+(const Bigint& other) const {
 	std::string a = this->_string;
 	std::string b = other._string;
@@ -89,18 +89,20 @@ Bigint Bigint::operator+(const Bigint& other) const {
 	int i = a.length() - 1;
 	int j = b.length() - 1;
 
-	while ( i >= 0 || j >= 0 || carry > 0) {
+	while (i >= 0 || j >= 0 || carry > 0) {
 		int sum = carry;
 
 		if (i >= 0)
 			sum += a[i--] -'0';
 		if (j >= 0)
 			sum += b[j--] -'0';
+
 		result.push_back((sum % 10) + '0');
 		carry = sum / 10;
 	}
 	std::reverse(result.begin(), result.end());
 	return Bigint(result);
+
 };
 Bigint& Bigint::operator+=(const Bigint& other) {
 	*this = *this + other;
