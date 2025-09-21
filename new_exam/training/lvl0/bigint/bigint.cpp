@@ -10,6 +10,7 @@ Bigint::Bigint(const Bigint& orginal) : _string(orginal._string) {};
 Bigint::~Bigint() {};
 
 std::string Bigint::getValue() const {return _string;};
+
 std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
 	std::string value = bigint.getValue();
 	size_t first_non_zero = value.find_first_not_of('0');
@@ -25,20 +26,22 @@ bool Bigint::operator==(const Bigint& other) const {
 };
 bool Bigint::operator!=(const Bigint& other) const {
 	return this->_string != other._string;
+
 };
 bool Bigint::operator<(const Bigint& other) const {
-	if (this->_string.length() != other._string.length())
-		return this->_string.length() < other._string.length();
-	return this->_string < other._string;
+	if(this->_string.length() != other._string.length())
+		return(this->_string.length() < other._string.length());
+	return(this->_string < other._string);
 };
 bool Bigint::operator>(const Bigint& other) const {
 	return other < *this;
 };
-bool Bigint::operator>=(const Bigint& other) const {
-	return !(*this < other);
-};
 bool Bigint::operator<=(const Bigint& other) const {
 	return !(*this > other);
+};
+bool Bigint::operator>=(const Bigint& other) const {
+	return !(*this < other);
+
 };
 
 Bigint Bigint::operator<<(unsigned int value) const {
@@ -86,23 +89,20 @@ Bigint Bigint::operator+(const Bigint& other) const {
 	std::string result = "";
 	int carry = 0;
 
-	int i = a.length() - 1;
-	int j = b.length() - 1;
-
-	while (i >= 0 || j >= 0 || carry > 0) {
+	int i = a.length() -1;
+	int j = b.length() -1;
+	while (i >= 0 || j>= 0 || carry > 0) {
 		int sum = carry;
 
 		if (i >= 0)
-			sum += a[i--] -'0';
+			sum += a[i--] - '0';
 		if (j >= 0)
-			sum += b[j--] -'0';
-
+			sum += b[j--] - '0';
 		result.push_back((sum % 10) + '0');
 		carry = sum / 10;
 	}
 	std::reverse(result.begin(), result.end());
 	return Bigint(result);
-
 };
 Bigint& Bigint::operator+=(const Bigint& other) {
 	*this = *this + other;
