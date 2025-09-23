@@ -20,6 +20,7 @@ operator++
 #pragma once
 #include <string>
 #include <iostream>
+#include <ostream>
 #include <sstream>
 #include <algorithm>
 
@@ -34,7 +35,7 @@ class Bigint {
 		Bigint(std::string std) : _string(std) {};
 
 		std::string getValue() const;
-		friend std::ostream& operator<<(const std::ostream& os, const Bigint& bigint);
+		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
 
 		bool operator==(const Bigint& other) const;
 		bool operator!=(const Bigint& other) const;
@@ -46,7 +47,7 @@ class Bigint {
 		Bigint operator<<(const Bigint& other) const;
 		Bigint operator>>(const Bigint& other) const;
 		Bigint& operator<<=(const Bigint& other);
-		Bigint& operator>>(const Bigint& other);
+		Bigint& operator>>=(const Bigint& other);
 
 		Bigint operator<<(unsigned int value) const;
 		Bigint operator>>(unsigned int value) const;
