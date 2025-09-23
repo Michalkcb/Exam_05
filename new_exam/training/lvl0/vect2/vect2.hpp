@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 17:14:17 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/23 19:40:13 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/23 20:10:50 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ class vect2 {
 		vect2& operator-=(const vect2& obj);
 		vect2& operator*=(const vect2& obj);
 		
-		vect2 operator+=(const vect2& obj) const;
-		vect2 operator-=(const vect2& obj) const;
-		vect2 operator*=(const vect2& obj) const;
-		
+		vect2 operator+(const vect2& obj) const;
+		vect2 operator-(const vect2& obj) const;
+		vect2 operator*(const vect2& obj) const;
+
+		vect2 operator-() const;
+		vect2 operator*(int num) const;
+		vect2& operator*=(int num);		
+
 		int operator[](int index) const;
 		int& operator[](int index);
 		
@@ -43,7 +47,8 @@ class vect2 {
 		vect2& operator++();
 		vect2 operator--(int);
 		vect2& operator--();
-};
-vect2 operator*=(int num, const vect2& obj);
 
+		
+};
+vect2 operator*(int num, const vect2& obj);
 std::ostream& operator<<(std::ostream& os, const vect2& obj);
