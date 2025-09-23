@@ -6,7 +6,7 @@
 /*   By: mbany <mbany@student.42warsaw.pl>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 17:14:17 by mbany             #+#    #+#             */
-/*   Updated: 2025/09/23 19:01:16 by mbany            ###   ########.fr       */
+/*   Updated: 2025/09/23 19:30:18 by mbany            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,4 @@ class vect2 {
 		vect2& operator--();
 		
 };
+std::ostream& operator<<(std::string& os, const vect2& obj);
