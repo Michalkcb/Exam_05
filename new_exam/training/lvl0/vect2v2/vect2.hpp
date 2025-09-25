@@ -3,15 +3,14 @@
 
 class vect2 {
     private:
-        int x, y;
+        int x,y;
     public:
-        vect2();
+        vect2() : x(0), y(0) {};
         vect2(int x, int y) : x(x), y(y) {};
         vect2(const vect2& v) {
             x = v.x;
             y = v.y;
-        };
-        ~vect2(){};
+        }
         bool operator==(const vect2& v) {
             return (x == v.x && y == v.y);
         }
@@ -26,5 +25,5 @@ class vect2 {
             return (*this);
         }
 
-
+        ~vect2();
 };
