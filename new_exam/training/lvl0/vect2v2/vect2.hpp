@@ -73,4 +73,13 @@ class vect2 {
             y *= n;
             return *this;
         }
+        vect2 operator+(const vect2& v) const{
+            return vect2(x + v.x, y - v.y);
+        }
+        vect2 operator-(const vect2& v) const{
+            return vect2(x - v.x, y - v.y);
+        }
+        vect2 operator*(int n) const{
+            return vect2(x *n, y *n);
+        }
 };

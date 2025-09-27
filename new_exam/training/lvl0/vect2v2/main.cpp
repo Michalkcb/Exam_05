@@ -26,6 +26,7 @@ int main()
 	// v1 -= v2; // -2, -4
 	std::cout << "v2 += v3: " << (v1 -= v2) << std::endl;
 	// v2 = v3 + v3 *2; // 3, 6
+	std::cout << "v2 = v3 + v3 *2: " << (v2 = v3 + v3 *2) << std::endl;
 	// v2 = 3 * v2; // 9, 18
 	// v2 += v2 += v3; // 20, 40
 	std::cout << "v2 += v2 += v3: " << (v2 += v2 += v3) << std::endl;
