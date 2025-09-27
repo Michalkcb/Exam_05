@@ -12,6 +12,17 @@ class vect2 {
             y = v.y;
         };
         ~vect2(){};
+        int operator[](int i) const{
+            return (i == 0 ? x : y);
+        }
+        int& operator[](int i) {
+            return (i == 0 ? x : y);
+        }
+        friend std::ostream& operator<<(std::ostream& COUT, const vect2& v) {
+            COUT << "{" << v[0] << ", " << v[1] << "}";
+            return COUT;
+        }
+
         bool operator==(const vect2& v) const {
             return (x == v.x && y == v.y);
         }
@@ -24,16 +35,6 @@ class vect2 {
                 y = v.y;
             }
             return *this;
-        }
-        int operator[](int i) const{
-            return (i == 0 ? x : y);
-        }
-        int& operator[](int i) {
-            return (i == 0 ? x : y);
-        }
-        friend std::ostream& operator<<(std::ostream& COUT, const vect2& v) {
-            COUT << "{" << v[0] << ", " << v[1] << "}";
-            return COUT;
         }
         vect2 operator++(int) {
             vect2 tmp = *this;
