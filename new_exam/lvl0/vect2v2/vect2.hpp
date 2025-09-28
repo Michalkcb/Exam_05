@@ -2,7 +2,6 @@
 #include <iostream>
 
 class vect2{
-
     private : 
         int x,y;
     public :
@@ -77,19 +76,15 @@ class vect2{
          vect2 operator+(const vect2& v) const{
             return vect2(x + v.x, y +v.y);
          }
-
          vect2 operator-(const vect2& v) const{
             return vect2(x - v.x, y - v.y);
          }
-
          vect2 operator*(int n) const{
             return vect2(x * n, y * n);
          }
-
          friend vect2 operator*(int n, const vect2 &v){
             return vect2(v.x * n, v.y * n);
          }
-
          vect2 operator-() const{
             return vect2(-x, -y);
          }
