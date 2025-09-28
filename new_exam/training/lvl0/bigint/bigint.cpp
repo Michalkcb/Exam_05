@@ -1,5 +1,5 @@
 #include "bigint.hpp"
-
+/*
 Bigint::Bigint() : _string("0") {};
 Bigint::Bigint(unsigned int n) {
 	std::ostringstream oss;
@@ -116,3 +116,4 @@ Bigint& Bigint::operator++() {
 	*this = *this + Bigint(1);
 	return *this;
 };
+*/

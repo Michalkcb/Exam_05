@@ -1,22 +1,3 @@
-/*
-1. Zacznij od prostych operatorów:
-Konstruktory
-operator==, operator!=
-getValue()
-Operator wypisywania
-2. Potem porównania:
-operator<, operator>
-operator<=, operator>=
-3. Następnie shift (kluczowe dla zadania):
-operator<<(unsigned int)
-operator>>(unsigned int)
-Wersje z przypisaniem (<<=, >>=)
-4. Na końcu dodawanie:
-operator+
-operator+=
-operator++
-*/
-
 #pragma once
 #include <string>
 #include <iostream>
@@ -28,34 +9,117 @@ class Bigint {
 	private:
 		std::string _string;
 	public:
-		Bigint();
-		Bigint(unsigned int n);
-		Bigint(const Bigint& orginal);
-		~Bigint();
+		Bigint() : _string("0") {};
+		Bigint(unsigned int n) {
+			std::ostringstream oss;
+			oss << n;
+			_string = oss.str();
+		};
+		Bigint(const Bigint& orginal) : _string(orginal._string) {};
+		~Bigint() {};
 		Bigint(std::string std) : _string(std) {};
 
-		std::string getValue() const;
-		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint);
+		std::string getValue() const {return _string;};
+		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
+			std::string value = bigint.getValue();
+			size_t first_non_zero = value.find_first_not_of('0');
+			if (first_non_zero == std::string::npos)
+				os << "0";
+			else
+				os << value.substr(first_non_zero);
+			return os;
+		};
 
-		bool operator==(const Bigint& other) const;
-		bool operator!=(const Bigint& other) const;
-		bool operator>(const Bigint& other) const;
-		bool operator<(const Bigint& other) const;
-		bool operator>=(const Bigint& other) const;
-		bool operator<=(const Bigint& other) const;
+		bool operator==(const Bigint& other) const {
+			return this->_string == other._string;
+		};
+		bool operator!=(const Bigint& other) const {
+			return this->_string != other._string;
+		};
+		bool operator<(const Bigint& other) const {
+			if (this->_string.length() != other._string.length())
+				return (this->_string.length() < other._string.length());
+			return (this->_string < other._string);
+		};
+		bool operator>(const Bigint& other) const {
+			return other < *this;
+		};
+		bool operator>=(const Bigint& other) const {
+			return !(*this < other);
+		};
+		bool operator<=(const Bigint& other) const {
+			return !(*this > other);
+		};
+		Bigint operator<<(unsigned int value) const {
+			Bigint result(*this);
+			result._string.append(value, '0');
+			return result;
+		};
+		Bigint operator>>(unsigned int value) const {
+			if (value >= this->_string.length())
+				return Bigint(0);
+			std::string result = _string.substr(0, _string.length() - value);
+			return Bigint(result);
+		};
+		Bigint& operator<<=(unsigned int value) {
+			*this = *this << value;
+			return *this;
+		};
+		Bigint& operator>>=(unsigned int value) {
+			*this = *this >> value;
+			return *this;
+		};
+		Bigint operator<<(const Bigint& other) const {
+			unsigned int shift = std::stoi(other.getValue());
+			return *this << shift;
+		};
+		Bigint operator>>(const Bigint& other) const {
+			unsigned int shift = std::stoi(other.getValue());
+			return *this >> shift;
+		};
+		Bigint& operator<<=(const Bigint& other) {
+			unsigned int shift = std::stoi(other.getValue());
+			return *this <<= shift;
+		};
+		Bigint& operator>>=(const Bigint& other) {
+			unsigned int shift = std::stoi(other.getValue());
+			return *this >>= shift;
+		};
 
-		Bigint operator<<(const Bigint& other) const;
-		Bigint operator>>(const Bigint& other) const;
-		Bigint& operator<<=(const Bigint& other);
-		Bigint& operator>>=(const Bigint& other);
 
-		Bigint operator<<(unsigned int value) const;
-		Bigint operator>>(unsigned int value) const;
-		Bigint& operator<<=(unsigned int value);
-		Bigint& operator>>=(unsigned int value);
+		Bigint operator+(const Bigint& other) const {
+			std::string a = this->_string;
+			std::string b= other._string;
 
-		Bigint operator+(const Bigint& other) const;
-		Bigint& operator+=(const Bigint& other);
-		Bigint operator++(int);
-		Bigint& operator++();
+			std::string result = "";
+			int carry = 0;
+			
+			int i = a.length() -1;
+			int j = b.length() -1;
+
+			while (i >= 0 || j >= 0 || carry > 0) {
+				int sum = carry;
+				if (i >= 0)
+					sum += a[i--] -'0';
+				if (j >= 0)
+					sum += b[j--] -'0';
+				result.push_back((sum % 10) + '0');
+				carry = sum / 10;
+			}
+			std::reverse(result.begin(), result.end());
+			return Bigint(result);
+		};
+		Bigint& operator+=(const Bigint& other) {
+			*this = *this + other;
+			return *this;
+		};
+		Bigint operator++(int) {
+			Bigint tmp = *this;
+			++(*this);
+			return tmp;
+		};
+		Bigint& operator++() {
+			*this = *this + Bigint(1);
+			return *this;
+		};
 };
