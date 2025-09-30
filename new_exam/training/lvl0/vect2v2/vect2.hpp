@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-class vect2 {
+class vect2{
     private:
         int x, y;
     public:
@@ -12,14 +12,14 @@ class vect2 {
             y = v.y;
         };
         ~vect2(){};
-        bool operator==(const vect2& v) const {
+        bool operator==(const vect2& v) const{
             return (x == v.x && y == v.y);
         }
-        bool operator!=(const vect2& v) const {
+        bool operator!=(const vect2& v) const{
             return !(*this == v);
         }
         vect2& operator=(const vect2& v) {
-            if (*this != v) {
+            if(*this != v) {
                 x = v.x;
                 y = v.y;
             }
@@ -37,24 +37,24 @@ class vect2 {
         }
         vect2 operator++(int) {
             vect2 tmp = *this;
-            x += 1;
-            y += 1;
+            x +=1;
+            y+=1;
             return tmp;
         }
         vect2& operator++() {
-            x += 1;
-            y += 1;
+            x +=1;
+            y+=1;
             return *this;
         }
         vect2 operator--(int) {
             vect2 tmp = *this;
-            x -= 1;
-            y -= 1;
+            x -=1;
+            y-=1;
             return tmp;
         }
         vect2& operator--() {
-            x -= 1;
-            y -= 1;
+            x -=1;
+            y -=1;
             return *this;
         }
         vect2& operator+=(const vect2& v) {
@@ -72,20 +72,21 @@ class vect2 {
             y *= n;
             return *this;
         }
-        vect2 operator+(const vect2& v) const{
-            return vect2(x + v.x, y + v.y);
+        vect2 operator+(const vect2& v) const{ 
+            return vect2(x + v.x, y +v.y);
         }
-        vect2 operator-(const vect2& v) const{
+        vect2 operator-(const vect2& v) const{ 
             return vect2(x - v.x, y - v.y);
         }
-        vect2 operator*(int n) const{
+        vect2 operator*(int n) const{ 
             return vect2(x * n, y * n);
         }
-        vect2 operator-() const{
+        vect2 operator-() {
             return vect2(-x, -y);
         }
         friend vect2 operator*(int n, const vect2& v) {
-            return vect2(n * v.x, n * v.y);
+            return vect2(n * v.x, n *v.y);
         }
+
 
 };

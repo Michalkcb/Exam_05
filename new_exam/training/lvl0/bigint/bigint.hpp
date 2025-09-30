@@ -1,125 +1,124 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include <ostream>
 #include <sstream>
 #include <algorithm>
 
-class Bigint {
+class bigint {
 	private:
 		std::string _string;
 	public:
-		Bigint() : _string("0") {};
-		Bigint(unsigned int n) {
+		bigint(): _string("0") {};
+		bigint(unsigned int n) {
 			std::ostringstream oss;
 			oss << n;
 			_string = oss.str();
 		};
-		Bigint(const Bigint& orginal) : _string(orginal._string) {};
-		~Bigint() {};
-		Bigint(std::string std) : _string(std) {};
-
+		bigint(const bigint& orginal) : _string(orginal._string) {};
+		~bigint(){};
+		bigint(std::string str) : _string(str) {};
 		std::string getValue() const {return _string;};
-		friend std::ostream& operator<<(std::ostream& os, const Bigint& bigint) {
+
+		bool operator==(const bigint& other) const{
+			return (this->_string == other._string);
+		}
+		bool operator!=(const bigint& other) const{
+			return (this->_string != other._string);
+		}
+		bool operator<(const bigint& other) const{
+			if(this->_string.length() != other._string.length())
+				return(this->_string.length() < other._string.length());
+			return(this->_string < other._string);
+		}
+		bool operator>(const bigint& other) const{
+			return other < *this;
+		}
+		bool operator>=(const bigint& other) const{
+			return !(*this < other);
+		}
+		bool operator<=(const bigint& other) const{
+			return !(*this > other);
+		}
+		friend std::ostream& operator<<(std::ostream& os, const bigint& bigint) {
 			std::string value = bigint.getValue();
 			size_t first_non_zero = value.find_first_not_of('0');
-			if (first_non_zero == std::string::npos)
+			if(first_non_zero == std::string::npos)
 				os << "0";
 			else
 				os << value.substr(first_non_zero);
 			return os;
-		};
-
-		bool operator==(const Bigint& other) const {
-			return this->_string == other._string;
-		};
-		bool operator!=(const Bigint& other) const {
-			return this->_string != other._string;
-		};
-		bool operator<(const Bigint& other) const {
-			if (this->_string.length() != other._string.length())
-				return (this->_string.length() < other._string.length());
-			return (this->_string < other._string);
-		};
-		bool operator>(const Bigint& other) const {
-			return other < *this;
-		};
-		bool operator>=(const Bigint& other) const {
-			return !(*this < other);
-		};
-		bool operator<=(const Bigint& other) const {
-			return !(*this > other);
-		};
-		Bigint operator<<(unsigned int value) const {
-			Bigint result(*this);
+		}
+		bigint operator<<(unsigned int value) const{
+			bigint result(*this);
 			result._string.append(value, '0');
 			return result;
-		};
-		Bigint operator>>(unsigned int value) const {
-			if (value >= this->_string.length())
-				return Bigint(0);
+		}		
+		bigint operator>>(unsigned int value) const{
+			if(value >= this->_string.length())
+				return bigint(0);
 			std::string result = _string.substr(0, _string.length() - value);
-			return Bigint(result);
-		};
-		Bigint& operator<<=(unsigned int value) {
+			return bigint(result);
+		}
+		bigint& operator<<=(unsigned int value){
 			*this = *this << value;
 			return *this;
-		};
-		Bigint& operator>>=(unsigned int value) {
+		}
+		bigint& operator>>=(unsigned int value){
 			*this = *this >> value;
 			return *this;
-		};
-		Bigint operator<<(const Bigint& other) const {
+		}
+		bigint operator<<(const bigint& other) const{
 			unsigned int shift = std::stoi(other.getValue());
 			return *this << shift;
-		};
-		Bigint operator>>(const Bigint& other) const {
+		}
+		bigint operator>>(const bigint& other) const{
 			unsigned int shift = std::stoi(other.getValue());
 			return *this >> shift;
-		};
-		Bigint& operator<<=(const Bigint& other) {
+		}
+		bigint operator<<=(const bigint& other) {
 			unsigned int shift = std::stoi(other.getValue());
 			return *this <<= shift;
-		};
-		Bigint& operator>>=(const Bigint& other) {
+		}
+		bigint operator>>=(const bigint& other) {
 			unsigned int shift = std::stoi(other.getValue());
 			return *this >>= shift;
-		};
-
-
-		Bigint operator+(const Bigint& other) const {
+		}
+		bigint operator+(const bigint& other) const{
 			std::string a = this->_string;
-			std::string b= other._string;
+			std::string b = other._string;
 
 			std::string result = "";
 			int carry = 0;
-			
+
 			int i = a.length() -1;
 			int j = b.length() -1;
 
 			while (i >= 0 || j >= 0 || carry > 0) {
 				int sum = carry;
-				if (i >= 0)
-					sum += a[i--] -'0';
-				if (j >= 0)
-					sum += b[j--] -'0';
+				if (i >= 0) 
+					sum += a[i--] - '0';
+				if (j >= 0) 
+					sum += b[j--] - '0';
 				result.push_back((sum % 10) + '0');
 				carry = sum / 10;
 			}
 			std::reverse(result.begin(), result.end());
-			return Bigint(result);
-		};
-		Bigint& operator+=(const Bigint& other) {
+			return bigint(result);
+		}
+		bigint& operator+=(const bigint& other){
 			*this = *this + other;
 			return *this;
-		};
-		Bigint operator++(int) {
-			Bigint tmp = *this;
+		}
+		bigint operator++(int) {
+			bigint tmp = *this;
 			++(*this);
 			return tmp;
-		};
-		Bigint& operator++() {
-			*this = *this + Bigint(1);
+		}
+		bigint& operator++() {
+			*this = *this + bigint(1);
 			return *this;
-		};
+		}
+
+
 };
+
