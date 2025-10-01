@@ -9,5 +9,8 @@ int main (int ac, char **av) {
     int width = atoi(av[1]);
     int height = atoi(av[2]);
     int iterations = atoi(av[3]);
-    
+    int arr[2][height + 2][width + 2];
+    for (int i = 0; i < 2; i++) {
+        
+    }
 }
