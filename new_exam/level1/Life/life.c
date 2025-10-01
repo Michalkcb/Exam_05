@@ -78,7 +78,7 @@ int main(int ac, char **av)
 	{
 		for(int j = 1; j <= width; j++)
 		{
-			putchar(arr[iterations % 2][i][j]? '0': ' ');
+			putchar(arr[iterations % 2][i][j]? 'O': ' ');
 		}
 		putchar('\n');
 	}
